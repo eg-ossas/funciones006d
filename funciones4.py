@@ -10,7 +10,7 @@ def calcular_propina(subtotal, porcentaje):
 def mostrar_resultados(total, propina, subtotal):
     print("=" *35)
     print(f"Subtotal: ${subtotal}")
-    print(f"Monto de propina: {propina}")
+    print(f"Monto de propina: ${propina}")
     print(f"Total a pagar: ${total}")
 
 def solicitar_subtotal():
