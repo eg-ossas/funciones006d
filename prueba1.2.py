@@ -35,9 +35,14 @@ def opcion_1(datos_mascotas):
                     if mascota["edad"] <= 0:
                         print("Su mascota debe tener al menos 1 año de edad")
                     else:
+                        print("Datos Guardados Correctamente")
                         break
                 except ValueError:
                     print("Debe introducir una edad valida")
+        else:
+            print("La mascota debe ser Perro, Gato o Ave")
+    else:
+        print("Debe agregar un nombre valido")
     datos_mascotas.append(mascota)
     return datos_mascotas
 
