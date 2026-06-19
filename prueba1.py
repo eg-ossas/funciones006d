@@ -7,7 +7,7 @@ def mostrar_menu():
     print("2. Buscar Mascota")
     print("3. Eliminar Mascota")
     print("4. Marcar como Vacunada")
-    print("5. Mostrar Mascotas")
+    print("5. Mostrar Mascotas")    
     print("6. Salir")
     print("=" *35)
 
