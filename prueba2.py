@@ -24,7 +24,7 @@ def solicitar_opciones():
 
 #Opcion 1
 def agregar_reserva(lista_habitaciones):
-    nombre= input("Ingrese el nombre del huesped: ").title
+    nombre= input("Ingrese el nombre del huesped: ")
     correcta = validacion_nombre(nombre)
     if not correcta:
         print("El nombre no puede estar en blanco")
@@ -49,8 +49,8 @@ def agregar_reserva(lista_habitaciones):
 
 #Validaciones Opcion 1
 
-def validacion_nombre(name):
-    return name.strip() != "" #Se eliminan los espacios en blanco al inicio y final, si no es solo espacios no retorna nada
+def validacion_nombre(nombre):
+    return nombre.strip().title() != "" #Se eliminan los espacios en blanco al inicio y final, si no es solo espacios no retorna nada
 
 def validacion_habitacion(habitacion):
     return habitacion.isdigit() and int(habitacion) > 0 and int(habitacion) < 200
@@ -76,7 +76,8 @@ while op != 6:
     if op == 1:
         agregar_reserva(datos_habitaciones)
     elif op == 2:
-        print()
+        print("***** Buscar Reserva *****")
+        nom = input("Ingrese el nombre del huesped a buscar: ")
     elif op == 3:
         print()
     elif op == 4:
