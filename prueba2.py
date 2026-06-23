@@ -42,7 +42,7 @@ def agregar_reserva(lista_habitaciones):
     habitaciones = {
         "nombre": nombre.strip(),
         "habitacion": habitacion,
-        "noches": noches,
+        "noches": int(noches),
         "confirmacion": False
     }
     datos_habitaciones.append(habitaciones)
@@ -65,6 +65,12 @@ def buscar_reserva(lista_a, nombre):
             return i
     return -1
 
+def confirmar_reserva(lista_a):
+    for i in lista_a:
+        if i["noches"] >= 2:
+            i["confirmacion"] = True
+        else:
+            i["confirmacion"] = False
 
 #Codigo principal
 datos_habitaciones = []
@@ -78,11 +84,38 @@ while op != 6:
     elif op == 2:
         print("***** Buscar Reserva *****")
         nom = input("Ingrese el nombre del huesped a buscar: ")
+        posicion = buscar_reserva(nom, datos_habitaciones)
+        if posicion != -1:
+            huesped = datos_habitaciones[posicion]
+            print(f"Habitación reservada: {posicion}")
+            print(f"Nombre del huesped: {huesped["nombre"]}")
+            print(f"Cantidad de noches: {huesped["noches"]}")
+            print(f"Reservas Confirmadas: {huesped["confirmacion"]}")
+        else:
+            print(f"No se ha encontrado ninguna reserva al nombre de: {nom}")
     elif op == 3:
-        print()
+        print("***** Eliminar Reserva *****")
+        nom = input("Ingrese el nombre del huesped para eliminar su reserva: ")
+        posicion = buscar_reserva(nom, datos_habitaciones)
+        if posicion != -1:
+            datos_habitaciones.pop(posicion)
+            print("Reserva eliminada correctamente")
+        else:
+            print(f"No se registra ninguna reserva realizada por el huespues: {nom}")
     elif op == 4:
-        print()
+        confirmar_reserva(datos_habitaciones)
+        print("Datos actualizados correctamente")
     elif op == 5:
-        print()
+        confirmar_reserva(datos_habitaciones)
+        if len(datos_habitaciones) == 0:
+            print("No se a realizado ninguna reserva")
+        else:
+            print("*** Datos de Reserva ***")
+            for i in datos_habitaciones:
+                print(f"Nombre del huesped: {i["nombre"]}")
+                print(f"Numero de habitacion reservada: {i["habitacion"]}")
+                print(f"Cantidad de noches: {i["noches"]}")
+                confirmada = "RESERVA CONFIRMADA" if i["confirmacion"] else "PENDIENTE"
+                print(f"Confirmacion de reserva: {confirmada}")
     elif op == 6:
         print("Gracias por usar el sistema. \nVuelva pronto")
