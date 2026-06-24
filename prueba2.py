@@ -53,18 +53,19 @@ def validacion_nombre(nombre):
     return nombre.strip().title() != "" #Se eliminan los espacios en blanco al inicio y final, si no es solo espacios no retorna nada
 
 def validacion_habitacion(habitacion):
-    return habitacion.isdigit() and int(habitacion) > 0 and int(habitacion) < 200
+    return habitacion.isdigit() and int(habitacion) > 0 and int(habitacion) <= 200
 
 def validacion_noches(noches):
     return noches.isdigit() and int(noches) > 0
 
-#Opcion 2
+#Opcion 2 y 3
 def buscar_reserva(lista_a, nombre):
     for i in range(len(lista_a)):
         if lista_a[i]["nombre"]:
             return i
     return -1
 
+#opcion 4 y 5
 def confirmar_reserva(lista_a):
     for i in lista_a:
         if i["noches"] >= 2:
@@ -90,7 +91,8 @@ while op != 6:
             print(f"Habitación reservada: {posicion}")
             print(f"Nombre del huesped: {huesped["nombre"]}")
             print(f"Cantidad de noches: {huesped["noches"]}")
-            print(f"Reservas Confirmadas: {huesped["confirmacion"]}")
+            estado = "CONFIRMADA" if datos_habitaciones[posicion]["confirmacion"] else "PENDIENTE"
+            print(f"Reservas Confirmadas: {estado}")
         else:
             print(f"No se ha encontrado ninguna reserva al nombre de: {nom}")
     elif op == 3:
@@ -103,8 +105,11 @@ while op != 6:
         else:
             print(f"No se registra ninguna reserva realizada por el huespues: {nom}")
     elif op == 4:
-        confirmar_reserva(datos_habitaciones)
-        print("Datos actualizados correctamente")
+        if len(datos_habitaciones) == 0:
+            print("No se a realizado ninguna reserva")
+        else:
+            confirmar_reserva(datos_habitaciones)
+            print("Datos actualizados correctamente")
     elif op == 5:
         confirmar_reserva(datos_habitaciones)
         if len(datos_habitaciones) == 0:
